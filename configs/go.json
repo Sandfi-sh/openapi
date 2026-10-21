@@ -1,0 +1,11 @@
+{
+  "packageName": "sandfish",
+  "packageVersion": "0.1.0",
+  "withGoMod": true,
+  "enumClassPrefix": true,
+  "hideGenerationTimestamp": true,
+  "disallowAdditionalPropertiesIfNotPresent": false,
+  "gitHost": "github.com",
+  "gitUserId": "sandfi-sh",
+  "gitRepoId": "sandfish-go"
+}

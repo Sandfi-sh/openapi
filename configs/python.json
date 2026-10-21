@@ -1,0 +1,12 @@
+{
+  "packageName": "sandfish_sdk.generated",
+  "projectName": "sandfish-sdk",
+  "packageVersion": "0.1.0",
+  "packageUrl": "https://github.com/sandfi-sh/sandfish-python",
+  "sourceFolder": "src",
+  "library": "httpx",
+  "supportHttpxSync": true,
+  "lazyImports": true,
+  "hideGenerationTimestamp": true,
+  "disallowAdditionalPropertiesIfNotPresent": false
+}

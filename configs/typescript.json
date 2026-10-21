@@ -1,0 +1,10 @@
+{
+  "npmName": "@sandfi-sh/sdk",
+  "npmVersion": "0.1.0",
+  "supportsES6": true,
+  "importFileExtension": ".js",
+  "dateLibrary": "string",
+  "useSingleRequestParameter": true,
+  "hideGenerationTimestamp": true,
+  "disallowAdditionalPropertiesIfNotPresent": false
+}
