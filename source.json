@@ -2,7 +2,8 @@
   "exporter_sha256": "874d6262599355caa762297bb75c00c775c56917fa6674306752752711231e58",
   "schema_sha256": "605f917489f5583541c859e975595cd599c3e526f285adbb2d8ba944ff8df39f",
   "source_base_revision": "f07526c6c4ccdf4c5dc559f6d7682da4e4fecba0",
-  "source_revision": null,
+  "source_ref": "feat/public-sdks",
+  "source_revision": "46b52f2dda93e921cae77795b95326d6ef5fd591",
   "source_url": "https://sandfi.sh/docs/openapi.json",
   "status": "candidate"
 }
