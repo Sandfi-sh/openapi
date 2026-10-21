@@ -20,9 +20,20 @@ reserve its name. GitHub access does not grant PyPI access.
 
 ### TypeScript and JavaScript
 
-Create the npm organization `sandfi-sh`. Publish the first checked package with
-an authenticated npm session and `npm publish --access public`. Then configure
-its trusted publisher:
+Use the npm account or organization that owns the `sandfi-sh` scope. The first
+release uses the `sandfi-sh` account's personal scope. A separate npm
+organization is not required.
+
+Build and test the candidate before the first publication. From the
+`sandfish-typescript` repository, publish its checked archive with an
+authenticated npm session:
+
+```sh
+npm pack --pack-destination /path/to/release-artifacts
+npm publish /path/to/release-artifacts/sandfi-sh-sdk-0.1.0.tgz --access public
+```
+
+Then configure its trusted publisher:
 
 - GitHub owner: `Sandfi-sh`
 - Repository: `sandfish-typescript`
@@ -34,6 +45,19 @@ Use npm 11.5.1 or later and Node 22.14.0 or later. Configure trust immediately
 before the first automated publication. npm requires a new publisher to
 complete its first publish within two days. GitHub-hosted runners provide the
 OIDC identity used by this workflow.
+
+After `release.yml` is published, configure trust in the npm package settings
+or use npm 11.15.0 or later with an interactive login:
+
+```sh
+npm trust github @sandfi-sh/sdk --repository Sandfi-sh/sandfish-typescript \
+  --file release.yml --environment npm --allow-publish
+npm trust list @sandfi-sh/sdk
+```
+
+The trust command requires account-level two-factor authentication. A granular
+token with two-factor bypass cannot configure trust. See the
+[npm trust command](https://docs.npmjs.com/cli/v11/commands/npm-trust).
 
 ### Go
 
@@ -69,6 +93,11 @@ Create the `pypi` and `npm` environments in their repositories before tagging.
 Install the exact version into a clean consumer project. Run a public read,
 such as listing plans or execution profiles. Check the package version and
 source manifest. A successful workflow alone does not establish this result.
+
+npm can accept an upload while registry processing continues. The package can
+return HTTP 404 during this interval. Wait for the exact version to become
+available before confirming publication. Do not submit the upload again while
+it is processing.
 
 Publication can be retried. The workflows check the artifact digests when a
 version is already present. Different bytes fail the release check. Never
