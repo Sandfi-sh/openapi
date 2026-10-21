@@ -1,5 +1,8 @@
 # Release an SDK
 
+Install the prepared `.github/workflows` files before using Actions releases.
+The setup token needs the GitHub `workflow` scope to write those files.
+
 ## Initial registry setup
 
 ### Python

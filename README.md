@@ -44,11 +44,14 @@ collisions between status and domain types.
 
 ## Automatic updates
 
-The contract workflow checks the deployed schema every six hours. It validates
+Install the prepared `.github/workflows` files to enable automatic updates.
+The GitHub token used for installation must have the `workflow` scope.
+
+Once installed, the contract workflow checks the deployed schema every six hours. It validates
 the public-contract marker and opens a contract update PR when content changes.
 It records the deployed revision from `X-Sandfish-Revision`.
 
-Each SDK checks this repository every six hours. It regenerates source, runs
+Each SDK update workflow checks this repository every six hours. It regenerates source, runs
 the SDK tests, and opens an update PR. Each workflow uses its own repository's
 built-in Actions token, so updates do not depend on a personal token or a
 cross-repository GitHub App. The updater explicitly starts CI for token-created
