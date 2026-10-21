@@ -1,5 +1,7 @@
 # Release an SDK
 
+[Maintenance guide](MAINTAINING.md) · [Generation guide](README.md)
+
 Install the prepared `.github/workflows` files before using Actions releases.
 The setup token needs the GitHub `workflow` scope to write those files.
 
@@ -85,6 +87,11 @@ Update the SDK changelog. Commit and push the checked candidate. Tag that exact
 commit as `v0.1.1`, then push the tag. The language repository's `release.yml`
 builds and tests the package before publication.
 
+Keep the published tag fixed when later documentation changes reach `main`.
+For a release retry, build from the original tag. A package rebuilt from newer
+README or helper content can have a different archive digest even when its
+version field is unchanged.
+
 The initial version is `0.1.0`; substitute that version for the first release.
 Create the `pypi` and `npm` environments in their repositories before tagging.
 
@@ -93,6 +100,22 @@ Create the `pypi` and `npm` environments in their repositories before tagging.
 Install the exact version into a clean consumer project. Run a public read,
 such as listing plans or execution profiles. Check the package version and
 source manifest. A successful workflow alone does not establish this result.
+
+Use a new consumer directory outside the SDK checkout. Install through the
+registry, so an editable package, local archive, or linked module cannot hide
+a publication failure. Substitute the intended version in these commands:
+
+| Language | Exact-version installation |
+|---|---|
+| Python | `python -m pip install sandfish-sdk==0.1.0` in a new virtual environment |
+| TypeScript and JavaScript | `npm install @sandfi-sh/sdk@0.1.0` |
+| Go | `go get github.com/sandfi-sh/sandfish-go@v0.1.0` in a new module |
+
+Use the matching public-read example in
+[sandfi-sh/examples](https://github.com/Sandfi-sh/examples). Check the installed
+version, retained artifact, and expected source revision. For npm, compare the
+registry's `dist.integrity` with the checked archive and confirm the intended
+distribution tag. Record these values in the release evidence.
 
 npm can accept an upload while registry processing continues. The package can
 return HTTP 404 during this interval. Wait for the exact version to become

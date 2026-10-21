@@ -3,6 +3,11 @@
 This repository owns the public [Sandfish API](https://sandfi.sh/docs#api)
 contract and reproducible generation of the Python, TypeScript, and Go SDKs.
 
+Read [MAINTAINING.md](MAINTAINING.md) before changing the contract, SDKs,
+automation, or organization presentation. It maps ownership, checks, and
+recovery procedures. The [initial release record](docs/INITIAL_RELEASE_2026_10_21.md)
+contains the dated setup state and remaining work.
+
 ## Source
 
 `openapi.json` is exported from Sandfish's FastAPI definitions. `source.json`
@@ -47,16 +52,20 @@ collisions between status and domain types.
 Install the prepared `.github/workflows` files to enable automatic updates.
 The GitHub token used for installation must have the `workflow` scope.
 
-Once installed, the contract workflow checks the deployed schema every six hours. It validates
+Once installed, the contract workflow checks the deployed schema every six
+hours. It validates
 the public-contract marker and opens a contract update PR when content changes.
 It records the deployed revision from `X-Sandfish-Revision`.
 
-Each SDK update workflow checks this repository every six hours. It regenerates source, runs
+Each SDK update workflow checks this repository every six hours. It regenerates
+source, runs
 the SDK tests, and opens an update PR. Each workflow uses its own repository's
 built-in Actions token, so updates do not depend on a personal token or a
 cross-repository GitHub App. The updater explicitly starts CI for token-created
 PRs. Enable **Allow GitHub Actions to create and approve pull requests** in each
 repository's Actions settings; the workflows only create pull requests.
+Read the [activation procedure](MAINTAINING.md#activate-and-maintain-actions)
+for organization policy, workflow-write permission, and verification.
 
 The complete update cycle is:
 
